@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http//mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+	<insert id="join" parameterType="userVO">
+		INSERT INTO TBL_USER
+		VALUES(SEQ_USERNUM.NEXTVAL, #{user_id} , #{user_pw}, #{user_phone_number}, #{user_name},
+		#{user_email},#{user_livingroom_c},#{user_kitchen_c},#{user_room_c},#{user_age},#{user_gender},#{user_zipcode},#{user_address},
+			#{user_address_detail},#{user_address_etc},0)
+	</insert>
+INSERT INTO SCOTT.TBL_USER
+(USER_NUM, USER_ID, USER_PW, USER_PHONE_NUMBER, USER_NAME, USER_EMAIL, USER_LIVINGROOM_C, USER_KITCHEN_C, USER_ROOM_C, USER_AGE, USER_GENDER, USER_ZIPCODE, USER_ADDRESS, USER_ADDRESS_DETAIL, USER_ADDRESS_ETC, ADMIN)
+VALUES(0, '', '', '', '', '', 'X', 'X', 'X', 0, '', '', '', '', '', 0);
+
+	<select id="getUserDetail" parameterType="String" resultType="userVO">
+		SELECT * FROM TBL_USER WHERE USER_ID= #{user_id}
+	</select>
+	
+	<select id="checkId" parameterType="string" resultType="_int">
+		SELECT COUNT(*) FROM TBL_USER WHERE USER_ID = #{user_id}
+	</select>
+	
+	<select id="login" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM TBL_USER
+		WHERE USER_ID = #{user_id} AND USER_PW = #{user_pw}
+	</select>
+
+	<update id="updateUser" parameterType="userVO">
+	UPDATE TBL_USER
+	SET USER_PW= #{user_pw}, 
+	USER_PHONE_NUMBER=#{user_phone_number},
+	USER_EMAIL=#{user_email}, 
+	USER_LIVINGROOM_C=#{user_livingroom_c},
+	USER_KITCHEN_C=#{user_kitchen_c}, 
+	USER_ROOM_C=#{user_room_c},
+ 	USER_ZIPCODE= #{user_zipcode}, 
+ 	USER_ADDRESS=#{user_address},
+ 	USER_ADDRESS_DETAIL=#{user_address_detail},
+ 	USER_ADDRESS_ETC= #{user_address_etc}
+	WHERE USER_ID =	#{user_id}
+	</update>
+	
+	
+	<select id="findId" parameterType="map" resultType="string">
+		SELECT  USER_ID FROM TBL_USER
+		WHERE USER_NAME = #{user_name} AND USER_PHONE_NUMBER= #{user_phone_number} 
+	</select>
+	
+	<select id="findPw" parameterType="map" resultType="string">
+		SELECT  USER_PW FROM TBL_USER
+		WHERE USER_ID = #{user_id} AND USER_PHONE_NUMBER= #{user_phone_number} 
+	</select>
+	
+	<update id="changePw" parameterType="map" >
+		UPDATE TBL_USER SET USER_PW = #{user_pw}  
+		WHERE USER_ID = #{user_id} 
+	</update>
+	
+	<select id="reFindPw" parameterType="map" resultType="string">
+		SELECT COUNT(*) FROM TBL_USER 
+		WHERE USER_ID= #{user_id} AND USER_PW=#{user_pw}
+	</select>
+	
+	<update id="reChangePw" parameterType="map" >
+		UPDATE TBL_USER SET  USER_PW= #{user_pw}
+		WHERE USER_ID = #{user_id}
+	</update>
+</mapper>

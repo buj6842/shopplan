@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http//mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="GalleryFiles">
+<insert id="insertFile" parameterType="galleryFilesVO">
+		INSERT INTO TBL_GAL_FILES VALUES(#{gal_file_name}, ${gal_num})
+	</insert>
+	
+	<select id="getDetail" parameterType="_int" resultType="galleryFilesVO">
+		SELECT * FROM TBL_GAL_FILES WHERE GAL_NUM = ${gal_num}
+	</select>
+	
+	<delete id="deleteFiles" parameterType="_int">
+		DELETE FROM TBL_GAL_FILES WHERE GAL_NUM = ${gal_num}
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

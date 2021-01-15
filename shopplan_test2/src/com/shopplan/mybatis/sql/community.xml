@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http//mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Community">
+	<select id="listAll" parameterType="map" resultType="communityVO">
+	SELECT * FROM (SELECT ROWNUM R, D.* FROM (SELECT * FROM TBL_COMMUNITY ORDER BY COMMUNITY_NUM DESC) D) B
+	WHERE B.R BETWEEN ${startRow} AND ${endRow}
+	</select>
+	
+	
+	<select id="getCommunityCnt" resultType="_int">
+	SELECT COUNT(*) FROM TBL_COMMUNITY
+	</select>
+	
+	<select id="getCommunitySeq" resultType="_int">
+	SELECT COMMUNITY_SEQ.CURRVAL FROM DUAL
+	</select>
+	
+	<update id="updateReadCount" parameterType ="_int">
+	UPDATE TBL_COMMUNITY
+	SET	READCOUNT = READCOUNT + 1
+	WHERE COMMUNITY_NUM = ${community_num}
+	</update>
+	
+	<insert id="insertCommunity" parameterType="communityVO">
+	INSERT INTO TBL_COMMUNITY
+	VALUES(COMMUNITY_SEQ.NEXTVAL, #{community_title}, #{community_id}, #{community_content}, 0, SYSDATE)
+	</insert>
+	
+	<select id="getDetail" parameterType="_int" resultType = "communityVO">
+		SELECT * FROM TBL_COMMUNITY WHERE COMMUNITY_NUM = #{community_num}
+	</select>
+	<update id="updateCommunity" parameterType="communityVO">
+	UPDATE TBL_COMMUNITY
+	SET COMMUNITY_TITLE= #{community_title}, COMMUNITY_CONTENT=#{community_content}
+	WHERE COMMUNITY_NUM=${community_num}
+	
+	</update>
+	
+	<delete id="deleteCommunity" parameterType="_int">
+		DELETE FROM TBL_COMMUNITY WHERE COMMUNITY_NUM = ${community_num}
+	</delete>
+	
+	<!-- 댓글 -->
+	<select id="getCommunityReplyList" parameterType="_int" resultType="communityReplyVO">
+		SELECT * FROM TBL_COMMUNITY_REPLY WHERE COMMUNITY_NUM = ${community_num} ORDER BY COMMUNITY_REPLY_NUM DESC
+	</select>
+	
+	<insert id="insertCommunityReply" parameterType="communityReplyVO">
+	INSERT INTO TBL_COMMUNITY_REPLY
+	VALUES(COMMUNITY_REPLY_SEQ.NEXTVAL, #{community_num}, #{user_id}, #{community_reply_content})
+	</insert>
+	
+	<!--검색  -->
+	<select id="searchCommunity" parameterType="map" resultType="communityVO">
+		SELECT * FROM TBL_COMMUNITY WHERE ${category} LIKE '%'||#{keyword}||'%' 
+	</select>		
+	
+	<delete id="deleteCommunityReply" parameterType="_int">
+		DELETE FROM TBL_COMMUNITY_REPLY WHERE COMMUNITY_REPLY_NUM = ${community_reply_num}
+	</delete>
+	
+	<update id="updateCommunityReply" parameterType="communityReplyVO">
+	UPDATE TBL_COMMUNITY_REPLY
+	SET COMMUNITY_REPLY_CONTENT = #{community_reply_content}
+	WHERE COMMUNITY_REPLY_NUM = ${community_reply_num}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

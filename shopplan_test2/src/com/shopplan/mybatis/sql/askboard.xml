@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http//mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AskBoard">
+	<select id="listAll" parameterType="map" resultType="askboardVO">
+		SELECT * FROM
+			(SELECT ROWNUM R, D.* FROM 
+				(SELECT * FROM TBL_ASKBOARD ORDER BY ASKBOARD_NUM DESC) D) B<!--A: 테이블 이름  -->
+		WHERE B.R BETWEEN ${startRow} AND ${endRow} <!-- 사용자가 입력하는게 아니니까 $를 썼다. -->
+	</select>
+	
+	<select id="getAskBoardCnt" resultType="_int">
+		SELECT COUNT(*) FROM TBL_ASKBOARD
+	</select>
+
+	
+	<select id ="getAskSeq" resultType="_int">
+	SELECT ASKBOARD_SEQ.CURRVAL FROM DUAL
+	</select>
+	
+	
+	<update id="updateReadCount" parameterType="_int">
+		UPDATE TBL_ASKBOARD 
+		SET READCOUNT = READCOUNT + 1 
+		WHERE ASKBOARD_NUM = ${askboard_num}
+	</update>
+	<insert id="insertAskBoard" parameterType="askboardVO">
+	INSERT INTO TBL_ASKBOARD VALUES(ASKBOARD_SEQ.NEXTVAL, #{askboard_id}, #{askboard_title}, #{askboard_content},SYSDATE, 0)
+	</insert>
+	
+	<!--게시글 번호를 전달받아서 해당 게시글 전체 내용을 리턴  -->
+	<select id="getDetail" parameterType="_int" resultType="askboardVO">
+		SELECT * FROM TBL_ASKBOARD WHERE ASKBOARD_NUM = #{askboard_num}
+	</select>
+	
+	<delete id="deleteAskBoard" parameterType="_int">
+		DELETE FROM TBL_ASKBOARD WHERE ASKBOARD_NUM=${askboard_num}
+	</delete>
+	
+	<update id="updateAskBoard" parameterType="askboardVO">
+		UPDATE TBL_ASKBOARD
+		SET ASKBOARD_TITLE = #{askboard_title}, ASKBOARD_CONTENT = #{askboard_content}
+		WHERE ASKBOARD_NUM = ${askboard_num}
+	</update>
+	
+	<!-- 댓글 -->
+	<select id="getAskReplyList" parameterType="_int" resultType="askboardReplyVO">
+		SELECT * FROM TBL_ASKREPLY WHERE ASKBOARD_NUM = ${askboard_num} ORDER BY ASKREPLY_NUM DESC
+	</select>
+	
+	<insert id="insertAskReply" parameterType="askboardReplyVO">
+		INSERT INTO TBL_ASKREPLY
+		VALUES(ASKREPLY_SEQ.NEXTVAL, ${askboard_num}, #{user_id}, #{askreply_content})
+	</insert> 
+	
+	<delete id="deleteAskReply" parameterType="_int">
+		DELETE FROM TBL_ASKREPLY WHERE ASKREPLY_NUM = ${askreply_num}
+	</delete>
+	
+	<update id="updateAskreply" parameterType="askboardReplyVO">
+		UPDATE TBL_ASKREPLY 
+		SET ASKREPLY_CONTENT = #{askreply_content}
+		WHERE ASKREPLY_NUM = ${askreply_num}
+	</update>
+	
+ 	<delete id="deleteAskReplyAll" parameterType="_int">
+		DELETE FROM TBL_ASKREPLY WHERE ASKBOARD_NUM = #{askboard_num}
+	</delete>
+	
+<!-- 	<update id ="updateReadCount" parameterType="_int">
+		UPDATE TBL_ASKBOARD
+		SET READCOUNT = READCOUNT +1
+		WHERE ASKBOARD_NUM = ${askboard_num}
+	</update> -->
+	 
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

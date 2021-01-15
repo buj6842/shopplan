@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http//mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Expert">
+	
+	<insert id="exjoin" parameterType="expertVO">
+		INSERT INTO T_EXPERT
+		VALUES(SEQ_E_NUMBER.NEXTVAL, #{ex_id} , #{ex_pw}, #{ex_name},#{ex_expert_name},  
+		#{ex_phone_num}, #{ex_email}, #{ex_gender}, #{ex_zipcode},#{ex_address},
+		#{ex_address_detail}, #{ex_address_etc})
+	</insert>
+
+	<select id="checkExId" parameterType="string" resultType="_int">
+		SELECT COUNT(*) FROM  T_EXPERT WHERE EX_ID = #{ex_id}
+	</select>
+	
+	<select id="loginEx" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM  T_EXPERT
+		WHERE EX_ID = #{ex_id} AND EX_PW = #{ex_pw}
+	</select>
+	
+	<select id="getSeq_ex" resultType="_int">
+		SELECT SEQ_E_NUMBER.CURRVAL FROM DUAL
+	</select>
+	
+	<select id="getExDetail" parameterType="string" resultType="expertVO">
+		SELECT * FROM T_EXPERT WHERE EX_ID= #{ex_id}
+	</select>
+	
+	<select id="getDetail" parameterType="_int" resultType="expertVO">
+		SELECT * FROM T_EXPERT WHERE EX_NUM = #{ex_num}
+	</select>
+	
+	<delete id="deleteEx" parameterType="_int">
+		DELETE FROM T_EXPERT WHERE EX_NUM = #{ex_num}
+	</delete>
+	
+	<update id="updateEx" parameterType="expertVO">
+	UPDATE T_EXPERT
+	SET  EX_PW= #{ex_pw}, 
+	EX_EXPERT_NAME=#{ex_expert_name}, 
+	EX_PHONE_NUM=#{ex_phone_num},
+	EX_EMAIL=#{ex_email}, 
+	EX_ZIPCODE= #{ex_zipcode}, 
+	EX_ADDRESS=#{ex_address}, 
+ 	EX_ADDRESS_DETAIL=#{ex_address_detail}, 
+ 	EX_ADDRESS_ETC=#{ex_address_etc}
+	WHERE EX_ID= #{ex_id}
+	</update>
+	
+	<select id="exfindId" parameterType="map" resultType="string">
+		SELECT  EX_ID FROM T_EXPERT
+		WHERE EX_NAME = #{ex_name} AND EX_PHONE_NUM= #{ex_phone_num} 
+	</select>
+	
+	<select id="exfindPw" parameterType="map" resultType="string">
+		SELECT  EX_PW FROM T_EXPERT
+		WHERE EX_ID = #{ex_id} AND EX_PHONE_NUM= #{ex_phone_num} 
+	</select>
+	
+	<update id="exChangePw" parameterType="map" >
+		UPDATE T_EXPERT SET EX_PW = #{ex_pw}  
+		WHERE EX_ID = #{ex_id} 
+	</update>
+	
+	<select id="reFindPwEx" parameterType="map" resultType="string">
+		SELECT COUNT(*) FROM T_EXPERT 
+		WHERE EX_ID= #{ex_id} AND EX_PW=#{ex_pw}
+	</select>
+	
+	<update id="reChangePwEx" parameterType="map" >
+		UPDATE T_EXPERT SET  EX_PW= #{ex_pw}
+		WHERE EX_ID = #{ex_id}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

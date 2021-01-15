@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http//mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ExFiles">
+	
+	<insert id="insertExFiles"  parameterType="ExFilesVO">
+		INSERT INTO T_FILES VALUES(#{file_name_ex}, ${ex_num})
+	</insert>
+	
+	<select id="getDetail" parameterType="_int" resultType="ExFilesVO">
+		SELECT * FROM T_FILES WHERE EX_NUM= #{ex_num}
+	</select>
+	
+	<delete id="deleteExFiles" parameterType="_int">
+		DELETE FROM T_FILES WHERE EX_NUM = #{ex_num}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

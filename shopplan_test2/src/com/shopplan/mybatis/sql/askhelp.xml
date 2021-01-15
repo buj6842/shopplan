@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http//mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Askhelp">
+	<select id="listAll" parameterType="map" resultType="askhelpVO">
+		SELECT * FROM
+			(SELECT ROWNUM R, D.* FROM 
+				(SELECT * FROM TBL_ASKHELP ORDER BY ASKHELP_NUM DESC) D) B
+		WHERE B.R BETWEEN ${startRow} AND ${endRow}
+	</select>
+	
+	<select id="getAskhelpCnt" resultType="_int">
+		SELECT COUNT(*) FROM TBL_ASKHELP
+	</select>
+	
+	<update id="updateReadCount" parameterType="_int">
+		UPDATE TBL_ASKHELP
+		SET ASKHELP_READCOUNT = ASKHELP_READCOUNT + 1 
+		WHERE ASKHELP_NUM = ${askhelp_num}
+	</update>
+	
+	<select id="getSeq" resultType="_int">
+		SELECT ASKHELP_SEQ.CURRVAL FROM DUAL
+	</select>
+	
+	<insert id="insertAskhelp" parameterType="askhelpVO">
+		INSERT INTO TBL_ASKHELP VALUES (ASKHELP_SEQ.NEXTVAL, #{askhelp_title}, #{askhelp_content}, #{askhelp_id}, SYSDATE, 0)
+	</insert>
+	
+	<!-- 게시글 번호를 전달받아서 해당 게시글 전체 내용을 리턴 -->
+	<select id="getDetail" parameterType="_int" resultType="askhelpVO">
+		SELECT * FROM TBL_ASKHELP WHERE ASKHELP_NUM = #{askhelp_num}
+	</select>
+	
+	<delete id="deleteBoard" parameterType="_int">
+		DELETE FROM TBL_ASKHELP WHERE ASKHELP_NUM = ${askhelp_num}
+	</delete>
+	
+	<update id="updateAskhelp" parameterType="askhelpVO">
+		UPDATE TBL_ASKHELP 
+		SET ASKHELP_TITLE = #{askhelp_title}, ASKHELP_CONTENT = #{askhelp_content} 
+		WHERE ASKHELP_NUM = ${askhelp_num}
+	</update>
+	
+	<!-- 댓글 -->
+	<select id="getReplyList" parameterType="_int" resultType="askhelpReplyVO">
+		SELECT * FROM TBL_HELPREPLY WHERE HELPBOARD_NUM = ${helpboard_num} ORDER BY HELPREPLY_NUM DESC
+	</select>
+	
+	<insert id="insertReply" parameterType="askhelpReplyVO">
+		INSERT INTO TBL_HELPREPLY
+		VALUES(HELPREPLY_SEQ.NEXTVAL, ${helpboard_num}, #{user_id}, #{reply_content})
+	</insert>
+	
+	<delete id="deleteReply" parameterType="_int">
+		DELETE FROM TBL_HELPREPLY WHERE HELPREPLY_NUM = ${helpreply_num}
+	</delete>
+	
+	<update id="updateReply" parameterType="askhelpReplyVO">
+		UPDATE TBL_HELPREPLY 
+		SET REPLY_CONTENT = #{reply_content}
+		WHERE HELPREPLY_NUM = ${helpreply_num}
+	</update>
+	
+	<delete id="deleteReplyAll" parameterType="_int">
+		DELETE FROM TBL_HELPREPLY WHERE HELPBOARD_NUM = #{helpboard_num}
+	</delete>
+	
+	<!--검색  -->
+   <select id="searchAskhelp" parameterType="map" resultType="askhelpVO">
+      SELECT * FROM TBL_ASKHELP WHERE ${category} LIKE '%'||#{keyword}||'%' 
+   </select>
+</mapper>

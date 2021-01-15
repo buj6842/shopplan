@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http//mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Gallery">
+	<select id="listAll" parameterType="map" resultType="galleryVO">
+	SELECT * FROM (SELECT ROWNUM R, D.* FROM (SELECT * FROM TBL_GAL ORDER BY GAL_NUM DESC) D) B
+	WHERE B.R BETWEEN ${startRow} AND ${endRow}
+	</select>
+	
+	<select id="getGalleryDetail" parameterType="_int" resultType="galleryVO">
+	SELECT * FROM TBL_GAL WHERE GAL_NUM = #{gal_num}
+	</select>
+	
+	<select id="getGalleryCnt" resultType="_int">
+	SELECT COUNT(*) FROM TBL_GAL
+	</select>
+	
+	<select id="getGallerySeq" resultType="_int">
+	SELECT GAL_SEQ.CURRVAL FROM DUAL
+	</select>
+	
+	<select id="searchGallery" parameterType="map" resultType="galleryVO">
+	SELECT * FROM TBL_GAL
+	<if test="gal_buildingtype != null">
+	WHERE GAL_BUILDINGTYPE = #{gal_buildingtype}	
+	</if>
+	<if test ="gal_roomtype != null">
+	AND GAL_ROOMTYPE = #{gal_roomtype}	
+	</if>
+	<if test="gal_colortype != null">
+	AND GAL_COLORTYPE = #{gal_colortype}
+	</if>
+	</select>
+	
+	<insert id="insertGallery" parameterType="galleryVO">
+	 INSERT INTO TBL_GAL VALUES(GAL_SEQ.NEXTVAL,#{gal_id},#{gal_buildingtype},#{gal_roomtype},#{gal_colortype},#{gal_filepath},SYSDATE)
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.shopplan.app.user.vo.UserVO" alias="userVO"/>
+		<typeAlias type="com.shopplan.app.gallery.vo.GalleryVO" alias="galleryVO"/>
+		<typeAlias type="com.shopplan.app.gallery.vo.GalleryFilesVO" alias="galleryFilesVO"/>
+		<typeAlias type="com.shopplan.app.community.vo.CommunityVO" alias="communityVO"/>
+		<typeAlias type="com.shopplan.app.community.vo.CommunityReplyVO" alias="communityReplyVO"/>
+		<typeAlias type="com.shopplan.app.community.vo.CommunityFilesVO" alias="communityFilesVO"/>
+		<typeAlias type="com.shopplan.app.askboard.vo.AskBoardVO" alias="askboardVO"/>	
+		<typeAlias type="com.shopplan.app.askboard.vo.AskBoardReplyVO" alias="askboardReplyVO"/> 
+		<typeAlias type="com.shopplan.app.askboard.vo.AskFilesVO" alias="askfilesVO"/> 
+		<typeAlias type="com.shopplan.app.askhelp.vo.AskhelpVO" alias="askhelpVO"/> 
+		<typeAlias type="com.shopplan.app.askhelp.vo.AskhelpReplyVO" alias="askhelpReplyVO"/> 
+		<typeAlias type="com.shopplan.app.user.vo.ExpertVO" alias="expertVO"/>
+		<typeAlias type="com.shopplan.app.user.vo.ExFilesVO" alias="ExFilesVO"/>
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+				<property name="username" value="plan"/>
+				<property name="password" value="1234"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="com/shopplan/mybatis/sql/user.xml"/>
+		<mapper resource="com/shopplan/mybatis/sql/gallery.xml"/>
+		<mapper resource="com/shopplan/mybatis/sql/galleryfiles.xml"/>
+		<mapper resource="com/shopplan/mybatis/sql/community.xml"/>
+		<mapper resource="com/shopplan/mybatis/sql/communityfiles.xml"/>
+		<mapper resource="com/shopplan/mybatis/sql/askboard.xml"/>
+		<mapper resource="com/shopplan/mybatis/sql/askfiles.xml"/> 
+		<mapper resource="com/shopplan/mybatis/sql/expert.xml"/>
+		<mapper resource="com/shopplan/mybatis/sql/exfiles.xml"/>
+		<mapper resource="com/shopplan/mybatis/sql/askhelp.xml"/>
+	</mappers>
+</configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,351 @@
+
+	img {
+    	-webkit-filter:grayscale(0%);
+   		 transition: -webkit-filter .3s linear;
+  	  }
+	img:hover 
+  	  {
+   		 -webkit-filter:grayscale(75%);
+ 	   }
+   	 
+
+.preview{
+	
+ 	background-image:url(images/kitchen.jpg);
+ 	<!--position:relative;
+   background-position:center center;-->
+ 	background-repeat:no-repeat;
+ 	margin:3% 10%;
+ 	width: 800px;
+ 	height: 600px;
+ }
+
+img{
+	
+	<!--position: relative;-->
+	position:absolute;
+	width:800px;
+	height: 600px;
+}
+
+input[type='radio'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 25px;
+  height: 25px;
+  margin: 5px 0 5px 5px;
+ 
+  float: left;
+  display: inline-block;
+ 
+  border-radius: 3px;
+  z-index: -1;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #d3cdcd;
+  
+}
+
+input[type='radio']:hover{
+  -webkit-filter: opacity(.4);
+  filter: opacity(.4);    
+}
+
+
+.teal{
+	background: teal;
+}
+.teal:checked{
+  background: linear-gradient(forestgreen, teal);
+}
+.teal:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 teal);
+  filter: opacity(.5) drop-shadow(0 0 0 teal);
+}
+.darkslategray{
+	background: darkslategray;
+}
+.darkslategray:checked{
+  background: linear-gradient(darkslategray, lightgrey);
+}
+.darkslategray:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 darkslategray);
+  filter: opacity(.5) drop-shadow(0 0 0 darkslategray);
+}
+.mediumpurple {
+	background: mediumpurple;
+}
+.mediumpurple:checked{
+  background: linear-gradient(mediumorchid, mediumpurple);
+}
+.mediumpurple:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 mediumpurple);
+  filter: opacity(.5) drop-shadow(0 0 0 mediumpurple);
+}
+.steelblue {
+	background: steelblue;
+}
+.steelblue:checked{
+  background: linear-gradient(slateblue, steelblue);
+}
+.steelblue:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 steelblue);
+  filter: opacity(.5) drop-shadow(0 0 0 steelblue);
+}
+.salmon {
+	background: salmon;
+}
+.salmon:checked{
+  background: linear-gradient(tomato, salmon);
+}
+.salmon:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 salmon);
+  filter: opacity(.5) drop-shadow(0 0 0 salmon);
+}
+.mediumblue {
+	background: mediumblue;
+}
+.mediumblue:checked{
+  background: linear-gradient(steelblue, mediumblue);
+}
+.mediumblue:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 mediumblue);
+  filter: opacity(.5) drop-shadow(0 0 0 mediumblue);
+}
+.plum {
+	background: plum;
+}
+.plum:checked{
+  background: linear-gradient(thistle, plum);
+}
+.plum:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 plum);
+  filter: opacity(.5) drop-shadow(0 0 0 plum);
+}
+.chocolate {
+	background: chocolate;
+}
+.chocolate:checked{
+  background: linear-gradient(irebrick, chocolate);
+}
+.chocolate:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 chocolate);
+  filter: opacity(.5) drop-shadow(0 0 0 chocolate);
+}
+.turquoise {
+	background: turquoise;
+}
+.turquoise:checked{
+  background: linear-gradient(turquoise, lightcyan);
+}
+.turquoise:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 turquoise);
+  filter: opacity(.5) drop-shadow(0 0 0 turquoise);
+}
+.darkkhaki {
+	background: darkkhaki;
+}
+.darkkhaki:checked{
+  background: linear-gradient(olivedrab, darkkhaki);
+}
+.darkkhaki:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 darkkhaki);
+  filter: opacity(.5) drop-shadow(0 0 0 darkkhaki);
+}
+.darksalmon {
+	background: darksalmon;
+}
+.darksalmon:checked{
+  background: linear-gradient(palevioletred, darksalmon);
+}
+.darksalmon:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 darksalmon);
+  filter: opacity(.5) drop-shadow(0 0 0 darksalmon);
+}
+.limegreen {
+	background: limegreen;
+}
+.limegreen:checked{
+  background: linear-gradient(springgreen , limegreen );
+}
+.limegreen:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 limegreen );
+  filter: opacity(.5) drop-shadow(0 0 0 limegreen );
+}
+.slategray {
+	background: slategray;
+}
+.slategray:checked{
+  background: linear-gradient(lightslategray , slategray );
+}
+.slategray:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 slategray );
+  filter: opacity(.5) drop-shadow(0 0 0 slategray );
+}
+
+.cornflowerblue {
+	background: cornflowerblue;
+}
+.cornflowerblue:checked{
+  background: linear-gradient(mediumslateblue, cornflowerblue );
+}
+.cornflowerblue:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 cornflowerblue );
+  filter: opacity(.5) drop-shadow(0 0 0 cornflowerblue );
+}
+
+
+.hotpink {
+	background: hotpink;
+}
+.hotpink:checked{
+  background: linear-gradient(lightpink, hotpink );
+}
+
+.hotpink:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 hotpink );
+  filter: opacity(.5) drop-shadow(0 0 0 hotpink );
+}
+
+
+.thistle{
+	background: thistle;
+}
+.thistle:checked{
+  background: linear-gradient(plum, thistle);
+}
+.thistle:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 thistle);
+  filter: opacity(.5) drop-shadow(0 0 0 thistle);
+}
+
+.mediumslateblue{
+	background: mediumslateblue;
+}
+.mediumslateblue:checked{
+  background: linear-gradient(cornflowerblue, mediumslateblue);
+}
+.mediumslateblue:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 mediumslateblue);
+  filter: opacity(.5) drop-shadow(0 0 0 mediumslateblue);
+}
+
+.darkturquoise{
+	background: darkturquoise;
+}
+.darkturquoise:checked{
+  background: linear-gradient(dodgerblue, darkturquoise);
+}
+
+.darkturquoise:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 darkturquoise);
+  filter: opacity(.5) drop-shadow(0 0 0 darkturquoise);
+}
+
+
+.lightcoral{
+	background: lightcoral;
+}
+.lightcoral:checked{
+  background: linear-gradient(salmon, lightcoral);
+}
+
+.lightcoral:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 lightcoral);
+  filter: opacity(.5) drop-shadow(0 0 0 lightcoral);
+}
+
+
+.goldenrod{
+	background: goldenrod;
+}
+.goldenrod:checked{
+  background: linear-gradient(darkgoldenrod, goldenrod);
+}
+
+.goldenrod:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 goldenrodn);
+  filter: opacity(.5) drop-shadow(0 0 0 goldenrod);
+}
+
+
+
+.yellowgreen{
+	background: yellowgreen;
+}
+
+.yellowgreen:checked{
+  background: linear-gradient(seagreen, yellowgreen);
+}
+
+.yellowgreen:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 yellowgreen);
+  filter: opacity(.5) drop-shadow(0 0 0 yellowgreen);
+}
+
+.red{
+  background: red;
+}
+
+.red:checked{
+  background: linear-gradient(brown, red);
+}
+
+.green{
+  background: green;
+}
+
+.green:checked{
+  background: linear-gradient(green, lime);
+}
+
+.yellow{
+  background: yellow;
+}
+
+.yellow:checked{
+  background: linear-gradient(orange, yellow);
+}
+
+.purple{
+  background: purple;
+}
+
+.pink{
+  background: pink;
+}
+
+.purple:checked{
+  background: linear-gradient(purple, violet);
+}
+
+.red:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 red);
+  filter: opacity(.5) drop-shadow(0 0 0 red);
+}
+
+.green:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 green);
+  filter: opacity(.5) drop-shadow(0 0 0 green);
+}
+
+.yellow:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 yellow);
+  filter: opacity(.5) drop-shadow(0 0 0 yellow);
+}
+
+.purple:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 purple);
+  filter: opacity(.5) drop-shadow(0 0 0 purple);
+}
+
+.pink:checked ~ img{
+  -webkit-filter: opacity(.5) drop-shadow(0 0 0 pink);
+  filter: opacity(.5) drop-shadow(0 0 0 pink);
+}
+
+
+.body {
+ <!--padding: 10%;-->
+}
+
+
